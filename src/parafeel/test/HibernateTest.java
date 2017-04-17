@@ -21,13 +21,7 @@ public class HibernateTest {
 
 	@Test
 	public void test() {
-		Sample s = new Sample();
-		s.setResourceID("1017");
-		s.setSampleName("gui");
-		s.setSpecificUse("zboli");
-		new SampleImpl().insertSample(s);
-		//new SampleImpl().deleteSampleById(2);
-		//List<Sample> l = new SampleImpl().queryAllSample();
+		//本来是想用Junit做下单元测试的，最后发现代码比较简单，没做
 
 	}
 
