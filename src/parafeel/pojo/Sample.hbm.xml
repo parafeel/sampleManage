@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping package="parafeel.pojo">
+    
+    <class name="Sample" table="sample">
+        <id name="id" column="id">
+            <generator class="native">
+            </generator>
+        </id>
+        <property name="resourceID" />
+        <property name="sampleID" />
+        <property name="sampleName" />
+        <property name="foreignName" />
+        <property name="origin" />
+        <property name="province" />
+        <property name="country" />
+        <property name="sampleClassID" />
+        <property name="sampleClass" />
+        <property name="mainUse" />
+        <property name="geologyPosition" />
+        <property name="briefDescription" />
+        <property name="specificUse" />
+        <property name="sampleProvider" />
+        <property name="sampleProvideTime" />
+        <property name="saveLocation" />
+        <property name="sampleNumber" />
+        <property name="locationNumber" />
+        <property name="collectionNumber" />
+        <property name="collectionCount" />
+    </class>
+     
+</hibernate-mapping>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+	
+	<package name="tryLoginstruts" extends="struts-default">
+	
+		<action name="login" class="parafeel.Action.UserAction"
+            method="login">
+            <result name="alreadylogin">/Sample/list.jsp</result>
+            <result name="goToLoginJsp">/login.jsp</result>
+        </action>
+        <action name="userLogin" class="parafeel.Action.UserAction"
+            method="userLogin">
+            <result name="alreadylogin">/Sample/list.jsp</result>
+            <result name="loginSuccess">/Sample/list.jsp</result>
+            <result name="loginFailure">/login.jsp</result>
+        </action>
+		<action name="loginOut" class="parafeel.Action.UserAction"
+            method="loginOut">
+            <result name="loginOutSuccess" type="redirect">listSample</result>
+            <result name="loginOutFailure" type="redirect">listSample</result>
+        </action>
+		
+	</package>
+	
+	<package name="sampleManagestruts" extends="struts-default">
+		<interceptors>
+        	<interceptor name="isLoginin" class="parafeel.interator.IsLoginUserInteraotor"></interceptor>
+           	<interceptor-stack name="isLoginStack">
+               	<interceptor-ref name="defaultStack"></interceptor-ref>
+               	<interceptor-ref name="isLoginin"></interceptor-ref>
+           	</interceptor-stack>
+     	</interceptors>
+        
+   		<default-interceptor-ref name="isLoginStack"></default-interceptor-ref>
+		
+		<global-results>
+            <result name="unlogin">/login.jsp</result>
+        </global-results>
+		
+		
+		<action name="tryInsert" class="parafeel.Action.SampleAction"
+            method="tryInsert">
+            <result name="insertJsp">/Sample/insert.jsp</result>
+        </action>
+		<action name="insertSample" class="parafeel.Action.SampleAction"
+            method="insert">
+            <result name="list" type="redirect">adminList</result>
+        </action>
+        
+		<action name="deleteSample" class="parafeel.Action.SampleAction"
+            method="delete">
+            <result name="list" type="redirect">adminList</result>
+        </action>
+        
+		<action name="tryEdit" class="parafeel.Action.SampleAction"
+            method="tryEdit">
+            <result name="tryEdit">/Sample/edit.jsp</result>
+        </action>
+        <action name="editSample" class="parafeel.Action.SampleAction"
+            method="edit">
+            <result name="list" type="redirect">adminList</result>
+        </action>
+		
+		<action name="updateSample" class="parafeel.Action.SampleAction"
+            method="update">
+            <result name="list" type="redirect">adminList</result>
+        </action>
+		
+		<action name="adminList" class="parafeel.Action.SampleAction"
+            method="adminList">
+            <result name="adminList">/Sample/list.jsp</result>
+        </action>
+        
+        <action name="classList" class="parafeel.Action.SampleAction"
+            method="classList">
+            <result name="classList">/Sample/list.jsp</result>
+        </action>
+		
+		<action name="adminSelect" class="parafeel.Action.SelectAction" 
+			method="adminSelect">
+			<result name="adminSelect">/Sample/list.jsp</result>
+		</action>
+		
+	</package>
+	
+	<package name="basicSamplestruts" extends="struts-default">
+		<default-action-ref name="index"></default-action-ref>
+		<action name="home" class="parafeel.Action.SampleAction"
+            method="home">
+            <result name="goHome">/home.jsp</result>
+        </action>
+		
+		<action name="index" class="parafeel.Action.SampleAction"
+            method="index">
+            <result name="index" type="redirect">listSample</result>
+        </action>
+		
+		<action name="showSample" class="parafeel.Action.SampleAction"
+            method="query">
+            <result name="showDetail">/sampleDetail.jsp</result>
+        </action>
+		
+        <action name="listSample" class="parafeel.Action.SampleAction"
+            method="list">
+            <result name="listJsp">/sampleList.jsp</result>
+        </action>
+
+	</package>
+
+</struts>
