@@ -6,9 +6,12 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import parafeel.pojo.Sample;
 
+@Repository
 public class SampleImpl implements SampleDao {
 
 	@Override

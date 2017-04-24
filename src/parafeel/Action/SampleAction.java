@@ -4,27 +4,33 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.opensymphony.xwork2.ActionContext;
 
 import parafeel.dao.SampleImpl;
 import parafeel.pojo.Category;
 import parafeel.pojo.Sample;
 
+@Service
 public class SampleAction {
-	SampleImpl sampleImpl = new SampleImpl();
+	
+	@Autowired
+	SampleImpl sampleImpl;
+	
 	Sample sample;
 	List<Sample> samples;
 	List<Category> categorys;
 	
-	ActionContext actionContext = ActionContext.getContext();  
-	Map<String, Object> session = actionContext.getSession();
-	
+
 	public Sample getSample() {
 		return sample;
 	}
 	public void setSample(Sample sample) {
 		this.sample = sample;
 	}
+	
 	public List<Sample> getSamples() {
 		return samples;
 	}

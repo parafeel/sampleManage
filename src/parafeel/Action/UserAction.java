@@ -4,7 +4,10 @@ package parafeel.Action;
 import java.util.List;
 import java.util.Map;
 
-import javax.websocket.Session;
+import org.apache.struts2.interceptor.SessionAware;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.opensymphony.xwork2.ActionContext;
 
@@ -13,19 +16,19 @@ import parafeel.dao.UserImpl;
 import parafeel.pojo.Sample;
 import parafeel.pojo.User;
 
-
-public class UserAction {
-	UserImpl userImpl = new UserImpl();
-	SampleImpl sampleImpl = new SampleImpl();
+@Service
+public class UserAction  implements SessionAware{
+	@Autowired
+	UserImpl userImpl;
+	@Autowired
+	SampleImpl sampleImpl;
 	
 	User user;
 	String isLoginFlag;
 	String loginMessage;
 	List<Sample> samples;
 	
-	ActionContext actionContext = ActionContext.getContext();  
-	Map<String, Object> session = actionContext.getSession();
-	
+	private Map session; 
 	
 	public User getUser() {
 		return user;
@@ -111,6 +114,16 @@ public class UserAction {
 			samples = sampleImpl.queryAllSample();
 			return "loginOutSuccess";
 		}
+	}
+	
+	//之前使用的是ActionContext actionContext = ActionContext.getContext（）；  
+	//Map session = actionContext.getSession（）；  来获取session，进而判断
+	//当前有无用户，而在使用注解之后，无法用这种方式了 （原因存疑），改用继承
+	//sessionAware接口来获得session
+	@Override
+	public void setSession(Map<String, Object> session) {
+		// TODO Auto-generated method stub
+		this.session = session;
 	}
 	
 }
